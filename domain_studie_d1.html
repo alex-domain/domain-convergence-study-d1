@@ -6,711 +6,739 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg: #050814;
-      --bg-card: #0b1020;
-      --bg-card-soft: #101628;
+      --bg-main: #020617;
+      --bg-card: #020617;
+      --bg-card-soft: #020617;
       --accent: #3b82f6;
-      --accent-soft: rgba(59, 130, 246, 0.2);
-      --accent-strong: #60a5fa;
-      --text-main: #f9fafb;
-      --text-sub: #9ca3af;
-      --border-soft: #1f2933;
+      --accent-soft: rgba(59, 130, 246, 0.15);
+      --accent-strong: rgba(59, 130, 246, 0.4);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
       --danger: #f97373;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.85);
+      --shadow-strong: 0 30px 80px rgba(15, 23, 42, 1);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    body {
       margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      height: 100%;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.25), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.20), transparent 55%),
+        radial-gradient(circle at top right, rgba(147, 51, 234, 0.22), transparent 55%),
+        #020617;
       color: var(--text-main);
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 32px 16px;
+      padding: 40px 16px 60px;
     }
 
-    .main-container {
+    .shell {
       width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 1180px;
     }
 
-    .header {
-      margin-bottom: 20px;
+    h1 {
+      margin: 0 0 6px;
+      font-size: 30px;
+      letter-spacing: 0.03em;
     }
 
-    .header-title {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      margin-bottom: 4px;
-    }
-
-    .header-subtitle {
+    .subtitle {
+      margin: 0;
       font-size: 14px;
-      color: var(--text-sub);
-      margin-bottom: 10px;
+      color: var(--text-muted);
     }
 
-    .progress-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .progress-bar-bg {
-      flex: 1;
-      height: 4px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.25);
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #34d399, #3b82f6);
-      transition: width 0.25s ease-out;
-    }
-
-    .progress-text {
-      font-size: 12px;
-      color: var(--text-sub);
-      min-width: 40px;
-      text-align: right;
-    }
-
-    .study-url {
-      font-size: 11px;
-      color: var(--text-sub);
-      margin-bottom: 12px;
-    }
-
-    .study-url-tag {
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      margin-left: 4px;
-      font-size: 11px;
-    }
-
-    .card {
-      background: radial-gradient(circle at top left, #111827 0, #020617 65%);
-      border-radius: 18px;
-      padding: 26px 30px 30px;
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      box-shadow: 0 22px 40px rgba(15, 23, 42, 0.7);
-      max-width: 1150px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .section-text {
-      font-size: 14px;
-      color: var(--text-sub);
-      line-height: 1.5;
-      margin-bottom: 6px;
-    }
-
-    .section-hint {
-      font-size: 12px;
-      color: var(--text-sub);
-      margin-top: 8px;
-    }
-
-    .section-subtitle {
-      font-size: 14px;
-      font-weight: 600;
-      margin-top: 18px;
-      margin-bottom: 6px;
-    }
-
-    .intro-form {
-      margin-top: 6px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px 18px;
-      margin-bottom: 10px;
-    }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .form-label {
-      font-size: 12px;
-      color: var(--text-sub);
-      margin-bottom: 4px;
-    }
-
-    .form-input,
-    .form-select {
-      border-radius: 9px;
-      border: 1px solid var(--border-soft);
-      padding: 8px 10px;
-      font-size: 13px;
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text-main);
-      outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease,
-        background 0.15s ease;
-    }
-
-    .form-input::placeholder,
-    .form-select::placeholder {
-      color: #6b7280;
-    }
-
-    .form-input:focus,
-    .form-select:focus {
-      border-color: var(--accent-strong);
-      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.7);
-      background: #020617;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .actions.spaced {
-      justify-content: space-between;
-    }
-
-    .primary-btn,
-    .ghost-btn {
-      border-radius: 999px;
-      border: none;
-      padding: 8px 20px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.1s ease,
-        background 0.15s ease, color 0.15s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      white-space: nowrap;
-    }
-
-    .primary-btn {
-      background: radial-gradient(circle at top left, #60a5fa 0, #2563eb 55%);
-      color: #f9fafb;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
-    }
-
-    .primary-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.85);
-    }
-
-    .primary-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.7);
-    }
-
-    .ghost-btn {
-      background: transparent;
-      color: var(--text-sub);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-    }
-
-    .ghost-btn:hover:not(:disabled) {
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-main);
-    }
-
-    .ghost-btn:disabled {
-      opacity: 0.45;
-      cursor: default;
-    }
-
-    .domain-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent-strong);
-      margin-bottom: 6px;
-    }
-
-    .question-text {
-      font-size: 16px;
-      line-height: 1.5;
-      margin-top: 4px;
-      margin-bottom: 16px;
-    }
-
-    .scale-row {
+    .top-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-top: 8px;
+      margin-bottom: 10px;
     }
 
-    .scale-label {
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-outer {
+      width: 340px;
+      max-width: 60vw;
+      height: 4px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+    }
+
+    .progress-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #3b82f6, #22c55e);
+      box-shadow: 0 0 18px rgba(59, 130, 246, 0.85);
+      transition: width 260ms ease;
+    }
+
+    .step-indicator {
+      font-size: 13px;
+      color: var(--text-muted);
+      min-width: 52px;
+      text-align: right;
+    }
+
+    .study-url {
+      margin: 10px 0 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .study-url-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: #e5e7eb;
       font-size: 12px;
-      color: var(--text-sub);
+    }
+
+    .card {
+      position: relative;
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.30), rgba(15, 23, 42, 0.95));
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.38);
+      padding: 28px 32px 26px;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      border: 1px solid transparent;
+      background:
+        linear-gradient(120deg, rgba(59, 130, 246, 0.85), rgba(56, 189, 248, 0.7), rgba(147, 51, 234, 0.85))
+        border-box;
+      mask:
+        linear-gradient(#000, #000) padding-box,
+        linear-gradient(#000, #000) border-box;
+      mask-composite: exclude;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-title {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .card-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 840px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(148, 163, 184, 0.95);
+      margin-bottom: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 18px;
+      margin-top: 22px;
+      margin-bottom: 4px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+    }
+
+    label {
+      color: rgba(209, 213, 219, 0.98);
+    }
+
+    input[type="text"],
+    select {
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.92);
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+      width: 100%;
+    }
+
+    input[type="text"]::placeholder {
+      color: rgba(148, 163, 184, 0.9);
+    }
+
+    select {
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #64748b 50%),
+                        linear-gradient(135deg, #64748b 50%, transparent 50%);
+      background-position: calc(100% - 13px) calc(50% - 3px),
+                           calc(100% - 8px) calc(50% - 3px);
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    .button-row {
+      margin-top: 24px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 9px 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease, opacity 140ms ease;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, #3b82f6, #2563eb);
+      color: white;
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.75);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.45;
+      box-shadow: none;
+      cursor: default;
+      transform: none;
+    }
+
+    .btn-primary:not(:disabled):hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.9);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(15, 23, 42, 0.98);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+    }
+
+    /* Fragebereich */
+
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .domain-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #dbeafe;
+    }
+
+    .question-text {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #e5e7eb;
+      max-width: 900px;
+    }
+
+    .likert-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .likert-label {
+      font-size: 13px;
+      color: var(--text-muted);
       white-space: nowrap;
     }
 
-    .scale-options {
+    .likert-buttons {
       display: flex;
       gap: 10px;
-      flex-wrap: wrap;
       justify-content: center;
       flex: 1;
     }
 
-    .scale-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+    .likert-btn {
+      min-width: 42px;
+      height: 32px;
+      border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.6);
       background: rgba(15, 23, 42, 0.95);
       color: var(--text-main);
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
+      transition: all 140ms ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.15s ease, border-color 0.15s ease,
-        box-shadow 0.15s ease, transform 0.1s ease;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.95);
     }
 
-    .scale-btn:hover {
-      border-color: var(--accent-strong);
-    }
-
-    .scale-btn.selected {
-      background: radial-gradient(circle at top left, #34d399 0, #3b82f6 60%);
-      border-color: transparent;
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5),
-        0 8px 20px rgba(37, 99, 235, 0.7);
+    .likert-btn:hover {
+      background: rgba(30, 64, 175, 0.9);
+      border-color: rgba(129, 140, 248, 0.95);
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.9);
       transform: translateY(-1px);
     }
 
-    .hidden {
-      display: none;
+    .likert-btn.selected {
+      background: radial-gradient(circle at top left, #3b82f6, #22c55e);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 18px 40px rgba(34, 197, 94, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .footer-note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Danke Seite */
+
+    .thanks-title {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .thanks-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 640px;
     }
 
     @media (max-width: 900px) {
       body {
-        padding: 16px;
+        padding: 24px 10px 40px;
       }
-
       .card {
-        padding: 20px 18px 22px;
+        padding: 22px 16px 20px;
       }
-
-      .form-row {
-        grid-template-columns: minmax(0, 1fr);
+      .grid {
+        grid-template-columns: 1fr;
       }
-
-      .scale-row {
+      .likert-row {
         flex-direction: column;
         align-items: stretch;
       }
-
-      .scale-label {
-        text-align: center;
+      .likert-label {
+        text-align: left;
       }
-
-      .actions.spaced {
-        flex-direction: row;
+      .button-row {
+        justify-content: flex-start;
+      }
+      .progress-outer {
+        max-width: 40vw;
       }
     }
   </style>
 </head>
 <body>
-  <div class="main-container">
-    <header class="header">
-      <h1 class="header-title">Studie D1 - Domainkonvergenz</h1>
-      <p class="header-subtitle">
-        Online Fragebogen zur Erfassung von Erlebnissen in der verbalen Domain.
-      </p>
-      <div class="progress-wrapper">
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="progressBar"></div>
+  <div class="shell">
+    <div class="top-row">
+      <div>
+        <h1>Studie D1 - Domainkonvergenz</h1>
+        <p class="subtitle">Online Fragebogen zur Erfassung von Erlebnissen in der verbalen Domain.</p>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-outer">
+          <div id="progressBar" class="progress-inner"></div>
         </div>
-        <div class="progress-text">
-          <span id="progressLabel">0/10</span>
+        <div id="stepIndicator" class="step-indicator">0/10</div>
+      </div>
+    </div>
+
+    <p class="study-url">
+      Aktueller Link zur Studie:
+      <span class="study-url-tag">
+        wird eingetragen, sobald die Seite online ist
+      </span>
+    </p>
+
+    <!-- Intro Sektion -->
+    <section id="introSection" class="card">
+      <div class="card-inner">
+        <div class="section-title">Einleitung</div>
+        <h2 class="card-title">Worum es in dieser Studie geht</h2>
+        <p class="card-text">
+          In dieser Studie geht es darum, wie sich Erlebnisse in bestimmten Lebensbereichen auf eine gemeinsame
+          innere Zone verdichten. Hier geht es konkret um die verbale Domain (Denken, Sprechen, Schreiben,
+          Formulieren).
+          <br /><br />
+          Du bekommst gleich eine Reihe von Aussagen zu sehen und gibst mit einer Skala an, wie stark sie auf dich
+          zutreffen.
+          <br />
+          Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, dass du ehrlich antwortest.
+        </p>
+
+        <div class="section-title" style="margin-top: 24px;">Ein paar Angaben zu dir (freiwillig)</div>
+        <div class="grid">
+          <div class="field">
+            <label for="sessionId">Session Code (optional)</label>
+            <input id="sessionId" type="text" placeholder="z.B. D1_001" />
+          </div>
+          <div class="field">
+            <label for="age">Alter</label>
+            <input id="age" type="text" placeholder="z.B. 20" />
+          </div>
+          <div class="field">
+            <label for="gender">Geschlecht</label>
+            <select id="gender">
+              <option value="">Keine Angabe</option>
+              <option value="maennlich">Männlich</option>
+              <option value="weiblich">Weiblich</option>
+              <option value="divers">Divers</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="country">Land</label>
+            <input id="country" type="text" placeholder="z.B. Land" />
+          </div>
+          <div class="field">
+            <label for="nativeLanguage">Muttersprache</label>
+            <input id="nativeLanguage" type="text" placeholder="z.B. Sprache" />
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="startButton" class="btn btn-primary">
+            Fragebogen starten
+          </button>
         </div>
       </div>
-      <p class="study-url">
-        Aktueller Link zur Studie:
-        <span class="study-url-tag">
-          wird eingetragen, sobald die Seite online ist
-        </span>
-      </p>
-    </header>
+    </section>
 
-    <main>
-      <!-- Einleitung und demografische Angaben -->
-      <section class="card" id="introCard">
-        <h2 class="section-title">Einleitung</h2>
-        <p class="section-text">
-          In dieser Studie geht es darum, wie sich Erlebnisse in bestimmten Lebensbereichen
-          auf eine gemeinsame innere Zone verdichten. Hier geht es konkret um die verbale
-          Domain (Denken, Sprechen, Schreiben, Formulieren).
-        </p>
-        <p class="section-text">
-          Du bekommst gleich eine Reihe von Aussagen zu sehen und gibst mit einer Skala an,
-          wie stark sie auf dich zutreffen.
-        </p>
-        <p class="section-hint">
-          Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, dass du ehrlich
-          antwortest.
-        </p>
-
-        <form id="introForm" class="intro-form" autocomplete="off">
-          <h3 class="section-subtitle">Ein paar Angaben zu dir (freiwillig)</h3>
-
-          <div class="form-row">
-            <div class="form-field">
-              <label class="form-label" for="sessionCode">Session Code (optional)</label>
-              <input
-                id="sessionCode"
-                class="form-input"
-                type="text"
-                placeholder="z.B. D1_001"
-              />
-            </div>
-            <div class="form-field">
-              <label class="form-label" for="age">Alter</label>
-              <input
-                id="age"
-                class="form-input"
-                type="text"
-                inputmode="numeric"
-                placeholder="z.B. 20"
-              />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-field">
-              <label class="form-label" for="gender">Geschlecht</label>
-              <select id="gender" class="form-select">
-                <option value="">Keine Angabe</option>
-                <option value="maennlich">Männlich</option>
-                <option value="weiblich">Weiblich</option>
-                <option value="divers">Divers</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label class="form-label" for="country">Land</label>
-              <input
-                id="country"
-                class="form-input"
-                type="text"
-                placeholder="z.B. Land"
-              />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-field">
-              <label class="form-label" for="nativeLanguage">Muttersprache</label>
-              <input
-                id="nativeLanguage"
-                class="form-input"
-                type="text"
-                placeholder="z.B. Sprache"
-              />
-            </div>
-          </div>
-
-          <div class="actions">
-            <button type="button" id="startBtn" class="primary-btn">
-              Fragebogen starten
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <!-- Fragenkarte -->
-      <section class="card hidden" id="questionCard">
-        <p class="domain-label">Domain: Verbale Domain</p>
-        <h2 class="question-text" id="questionText"></h2>
-
-        <div class="scale-row">
-          <span class="scale-label">Trifft gar nicht zu</span>
-          <div class="scale-options" id="scaleOptions"></div>
-          <span class="scale-label">Trifft sehr stark zu</span>
+    <!-- Frage Sektion -->
+    <section id="questionSection" class="card" style="display: none;">
+      <div class="card-inner">
+        <div class="question-header">
+          <div class="domain-label" id="domainLabel">Domain: Verbale Domain</div>
+        </div>
+        <div id="questionText" class="question-text">
+          Frage Text
         </div>
 
-        <div class="actions spaced">
-          <button type="button" id="backBtn" class="ghost-btn">Zurück</button>
-          <button type="button" id="nextBtn" class="primary-btn">Weiter</button>
+        <div class="likert-row">
+          <div class="likert-label">Trifft gar nicht zu</div>
+          <div class="likert-buttons" id="likertButtons">
+            <button class="likert-btn" data-value="1">1</button>
+            <button class="likert-btn" data-value="2">2</button>
+            <button class="likert-btn" data-value="3">3</button>
+            <button class="likert-btn" data-value="4">4</button>
+            <button class="likert-btn" data-value="5">5</button>
+          </div>
+          <div class="likert-label">Trifft sehr stark zu</div>
         </div>
-      </section>
 
-      <!-- Danke / Download -->
-      <section class="card hidden" id="thankYouCard">
-        <h2 class="section-title">Danke für deine Teilnahme</h2>
-        <p class="section-text">
-          Deine Antworten wurden lokal vorbereitet. Du kannst sie jetzt als Datei speichern
-          und uns später zur Auswertung zur Verfügung stellen.
+        <div class="button-row">
+          <button id="backButton" class="btn btn-secondary">Zurück</button>
+          <button id="nextButton" class="btn btn-primary" disabled>Weiter</button>
+        </div>
+
+        <p class="footer-note">
+          Bitte beantworte jede Aussage spontan. Es gibt keine richtigen oder falschen Antworten.
         </p>
-        <p class="section-hint">
-          Hinweis: Beim Speichern werden keine Online Daten übertragen. Die Datei liegt nur
-          bei dir und kann z.B. per Mail verschickt werden.
+      </div>
+    </section>
+
+    <!-- Danke Sektion -->
+    <section id="thanksSection" class="card" style="display: none;">
+      <div class="card-inner">
+        <div class="section-title">Abschluss</div>
+        <h2 class="thanks-title">Danke für deine Teilnahme</h2>
+        <p class="thanks-text">
+          Deine Antworten wurden lokal vorbereitet. Du kannst sie nun als Datei herunterladen und mir später
+          zur Auswertung zur Verfügung stellen.
         </p>
-        <div class="actions">
-          <button type="button" id="downloadBtn" class="primary-btn">
+
+        <div class="button-row">
+          <button id="downloadButton" class="btn btn-primary">
             Antworten als Datei speichern
           </button>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   </div>
 
   <script>
-    (function () {
-      // 10 Items, nur verbale Domain
-      const ITEMS = [
-        {
-          id: "V01",
-          domain: "verbale",
-          polarity: "negativ",
-          text:
-            "Wenn ich erschöpft bin, merke ich es als erstes daran, dass mir Worte, Formulierungen oder gedankliche Struktur fehlen."
-        },
-        {
-          id: "V02",
-          domain: "verbale",
-          polarity: "negativ",
-          text:
-            "Es belastet mich deutlich, wenn ich in wichtigen Situationen sprachlich nicht die volle Kontrolle habe oder mir Sätze entgleiten."
-        },
-        {
-          id: "V03",
-          domain: "verbale",
-          polarity: "ambivalent",
-          text:
-            "Fehler in Gesprächen, Texten oder Diskussionen gehen mir noch Tage oder Wochen später im Kopf herum."
-        },
-        {
-          id: "V04",
-          domain: "verbale",
-          polarity: "positiv",
-          text:
-            "Wenn ich intensiv schreibe, rede oder diskutiere, vergesse ich oft Zeit und Umgebung, weil ich so darin aufgehe."
-        },
-        {
-          id: "V05",
-          domain: "verbale",
-          polarity: "ambivalent",
-          text:
-            "Ereignisse aus ganz unterschiedlichen Lebensbereichen verdichten sich in meinem Kopf oft zu einer einzigen inneren Sprach-Zone."
-        },
-        {
-          id: "V06",
-          domain: "verbale",
-          polarity: "negativ",
-          text:
-            "Meine peinlichsten Erinnerungen hängen oft damit zusammen, dass mir die richtigen Worte gefehlt haben oder ich sprachlich blockiert war."
-        },
-        {
-          id: "V07",
-          domain: "verbale",
-          polarity: "positiv",
-          text:
-            "Mindestens ein Schlüsselmoment in meinem Leben war ein Vortrag, Text oder Gespräch, der bzw. das für mich sehr viel verändert hat."
-        },
-        {
-          id: "V08",
-          domain: "verbale",
-          polarity: "positiv",
-          text:
-            "Wenn ich schreibe oder spreche und die Formulierungen genau treffen, fühlt sich das an, als würde innen etwas einrasten."
-        },
-        {
-          id: "V09",
-          domain: "verbale",
-          polarity: "ambivalent",
-          text:
-            "Soziale Szenen, in denen ich mich fehl am Platz oder minderwertig gefühlt habe, gehen mir oft vor allem sprachlich noch lange durch den Kopf."
-        },
-        {
-          id: "V10",
-          domain: "verbale",
-          polarity: "negativ",
-          text:
-            "Soziale Spannungen oder Statusverluste merke ich zuerst daran, dass ich innerlich an meinen Formulierungen zweifle."
-        }
-      ];
-
-      const TOTAL_ITEMS = ITEMS.length;
-
-      const introCard = document.getElementById("introCard");
-      const questionCard = document.getElementById("questionCard");
-      const thankYouCard = document.getElementById("thankYouCard");
-
-      const progressBar = document.getElementById("progressBar");
-      const progressLabel = document.getElementById("progressLabel");
-
-      const sessionCodeInput = document.getElementById("sessionCode");
-      const ageInput = document.getElementById("age");
-      const genderSelect = document.getElementById("gender");
-      const countryInput = document.getElementById("country");
-      const nativeLanguageInput = document.getElementById("nativeLanguage");
-
-      const startBtn = document.getElementById("startBtn");
-      const backBtn = document.getElementById("backBtn");
-      const nextBtn = document.getElementById("nextBtn");
-      const downloadBtn = document.getElementById("downloadBtn");
-
-      const questionTextEl = document.getElementById("questionText");
-      const scaleOptionsEl = document.getElementById("scaleOptions");
-
-      let currentIndex = 0;
-      const answers = new Array(TOTAL_ITEMS).fill(null);
-
-      function updateProgress() {
-        const completed = answers.filter((v) => v !== null).length;
-        const current = Math.max(completed, currentIndex);
-        const fraction = current / TOTAL_ITEMS;
-        progressBar.style.width = (fraction * 100).toFixed(1) + "%";
-        progressLabel.textContent = current + "/" + TOTAL_ITEMS;
+    // Fragenliste - 10 Items, nur verbale Domain
+    const questions = [
+      {
+        id: 1,
+        domain: "verbale",
+        text: "Ereignisse aus unterschiedlichen Lebensbereichen verdichten sich in meinem Kopf oft zu einer einzigen inneren Sprach-Zone."
+      },
+      {
+        id: 2,
+        domain: "verbale",
+        text: "Meine peinlichsten Erinnerungen haben oft damit zu tun, dass mir die richtigen Worte gefehlt haben oder ich sprachlich blockiert war."
+      },
+      {
+        id: 3,
+        domain: "verbale",
+        text: "Fehler in Gesprächen, Texten oder Diskussionen gehen mir noch Tage oder Wochen später im Kopf herum."
+      },
+      {
+        id: 4,
+        domain: "verbale",
+        text: "Wenn ich intensiv schreibe, rede oder diskutiere, vergesse ich häufig Zeit und Umgebung, weil ich so darin aufgehe."
+      },
+      {
+        id: 5,
+        domain: "verbale",
+        text: "Es belastet mich deutlich, wenn ich in wichtigen Situationen sprachlich nicht die volle Kontrolle habe oder mir Sätze entgleiten."
+      },
+      {
+        id: 6,
+        domain: "verbale",
+        text: "Mindestens ein Schlüsselmoment in meinem Leben war ein Vortrag, Text oder Gespräch, das für mich sehr viel verändert hat."
+      },
+      {
+        id: 7,
+        domain: "verbale",
+        text: "Wenn ich erschöpft bin, merke ich es oft zuerst daran, dass mir Worte, Formulierungen oder gedankliche Struktur fehlen."
+      },
+      {
+        id: 8,
+        domain: "verbale",
+        text: "Wenn ich über ein Thema nachdenke, beginnen sich Formulierungen und Sätze automatisch in meinem Kopf zu sortieren."
+      },
+      {
+        id: 9,
+        domain: "verbale",
+        text: "Ich habe häufig das Gefühl, dass in meinem Kopf ein innerer Kommentar mitläuft, der viele Situationen sprachlich begleitet."
+      },
+      {
+        id: 10,
+        domain: "verbale",
+        text: "Wenn ich längere Zeit weder schreibe noch ernsthaft spreche oder diskutiere, fühlt es sich so an, als würde mir etwas Wichtiges fehlen."
       }
+    ];
 
-      function renderScale(selectedValue) {
-        scaleOptionsEl.innerHTML = "";
-        for (let value = 1; value <= 5; value++) {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className =
-            "scale-btn" + (selectedValue === value ? " selected" : "");
-          btn.textContent = String(value);
-          btn.dataset.value = String(value);
-          btn.addEventListener("click", () => {
-            answers[currentIndex] = value;
-            renderScale(value);
-            updateProgress();
-          });
-          scaleOptionsEl.appendChild(btn);
-        }
-      }
+    const totalQuestions = questions.length;
 
-      function showQuestion(index) {
-        currentIndex = index;
-        const item = ITEMS[index];
-        questionTextEl.textContent = item.text;
-        const selected = answers[index];
-        renderScale(selected);
-        backBtn.disabled = index === 0;
-        nextBtn.textContent = index === TOTAL_ITEMS - 1 ? "Abschließen" : "Weiter";
-        updateProgress();
-      }
+    // Zustand
+    let currentStep = 0; // 0 = Intro, 1..10 = Fragen, 10 = letzte Frage, danach Danke aber Anzeige bleibt 10
+    let currentQuestionIndex = 0; // 0..9
+    const answers = {};
 
-      function goToQuestionnaire() {
-        introCard.classList.add("hidden");
-        thankYouCard.classList.add("hidden");
-        questionCard.classList.remove("hidden");
-        showQuestion(0);
-      }
+    // DOM Referenzen
+    const progressBar = document.getElementById("progressBar");
+    const stepIndicator = document.getElementById("stepIndicator");
 
-      function showThankYou() {
-        questionCard.classList.add("hidden");
-        thankYouCard.classList.remove("hidden");
-        progressBar.style.width = "100%";
-        progressLabel.textContent = TOTAL_ITEMS + "/" + TOTAL_ITEMS;
-      }
+    const introSection = document.getElementById("introSection");
+    const questionSection = document.getElementById("questionSection");
+    const thanksSection = document.getElementById("thanksSection");
 
-      startBtn.addEventListener("click", () => {
-        goToQuestionnaire();
-      });
+    const startButton = document.getElementById("startButton");
+    const backButton = document.getElementById("backButton");
+    const nextButton = document.getElementById("nextButton");
+    const downloadButton = document.getElementById("downloadButton");
 
-      backBtn.addEventListener("click", () => {
-        if (currentIndex > 0) {
-          showQuestion(currentIndex - 1);
-        }
-      });
+    const sessionIdInput = document.getElementById("sessionId");
+    const ageInput = document.getElementById("age");
+    const genderSelect = document.getElementById("gender");
+    const countryInput = document.getElementById("country");
+    const nativeLanguageInput = document.getElementById("nativeLanguage");
 
-      nextBtn.addEventListener("click", () => {
-        if (answers[currentIndex] == null) {
-          alert(
-            "Bitte wähle eine Antwort auf der Skala aus, bevor du weitergehst."
-          );
-          return;
-        }
-        if (currentIndex < TOTAL_ITEMS - 1) {
-          showQuestion(currentIndex + 1);
-        } else {
-          showThankYou();
-        }
-      });
+    const domainLabel = document.getElementById("domainLabel");
+    const questionText = document.getElementById("questionText");
+    const likertButtonsContainer = document.getElementById("likertButtons");
 
-      downloadBtn.addEventListener("click", () => {
-        const timestamp = new Date().toISOString();
-        const randomId = Math.random().toString(36).slice(2, 8).toUpperCase();
-        const fallbackSessionId = "D1-" + randomId;
-        const sessionId = (sessionCodeInput.value || fallbackSessionId).trim();
+    function updateProgress() {
+      const displayStep = Math.min(currentStep, totalQuestions);
+      stepIndicator.textContent = displayStep + "/" + totalQuestions;
+      const percent = (displayStep / totalQuestions) * 100;
+      progressBar.style.width = percent + "%";
+    }
 
-        const participant = {
-          studyId: "D1",
-          studyName: "Domainkonvergenz",
-          version: "verbale_domain_v1",
-          sessionId: sessionId,
-          timestamp: timestamp,
-          demographics: {
-            age: ageInput.value.trim(),
-            gender: genderSelect.value || "",
-            country: countryInput.value.trim(),
-            nativeLanguage: nativeLanguageInput.value.trim()
-          },
-          responses: ITEMS.map((item, index) => ({
-            itemId: item.id,
-            itemIndex: index + 1,
-            domain: item.domain,
-            polarity: item.polarity,
-            questionText: item.text,
-            answer: answers[index]
-          }))
-        };
-
-        const blob = new Blob([JSON.stringify(participant, null, 2)], {
-          type: "application/json"
-        });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        const safeSession = sessionId.replace(/[^A-Za-z0-9_-]/g, "_");
-        a.download = "studie_d1_responses_" + safeSession + ".json";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-      });
-
+    function showIntro() {
+      currentStep = 0;
+      introSection.style.display = "block";
+      questionSection.style.display = "none";
+      thanksSection.style.display = "none";
       updateProgress();
-    })();
+    }
+
+    function showQuestion(index) {
+      const q = questions[index];
+
+      introSection.style.display = "none";
+      questionSection.style.display = "block";
+      thanksSection.style.display = "none";
+
+      domainLabel.textContent = "Domain: Verbale Domain";
+      questionText.textContent = q.text;
+
+      // Auswahl zurücksetzen
+      const btns = likertButtonsContainer.querySelectorAll(".likert-btn");
+      btns.forEach((btn) => {
+        btn.classList.remove("selected");
+      });
+
+      const prevAnswer = answers[q.id];
+      if (prevAnswer) {
+        const btn = likertButtonsContainer.querySelector(
+          '.likert-btn[data-value="' + prevAnswer + '"]'
+        );
+        if (btn) {
+          btn.classList.add("selected");
+        }
+        nextButton.disabled = false;
+      } else {
+        nextButton.disabled = true;
+      }
+
+      backButton.style.visibility = currentStep === 1 ? "visible" : "visible";
+      updateProgress();
+    }
+
+    function showThanks() {
+      introSection.style.display = "none";
+      questionSection.style.display = "none";
+      thanksSection.style.display = "block";
+
+      // Anzeige bleibt 10/10
+      currentStep = totalQuestions;
+      updateProgress();
+    }
+
+    // Event Listener
+    startButton.addEventListener("click", () => {
+      currentStep = 1;
+      currentQuestionIndex = 0;
+      showQuestion(currentQuestionIndex);
+    });
+
+    likertButtonsContainer.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!target.classList.contains("likert-btn")) return;
+
+      const value = parseInt(target.getAttribute("data-value"), 10);
+      const q = questions[currentQuestionIndex];
+
+      answers[q.id] = value;
+
+      const btns = likertButtonsContainer.querySelectorAll(".likert-btn");
+      btns.forEach((btn) => btn.classList.remove("selected"));
+      target.classList.add("selected");
+
+      nextButton.disabled = false;
+    });
+
+    backButton.addEventListener("click", () => {
+      if (currentStep === 1) {
+        // zurück zur Intro Seite
+        showIntro();
+        return;
+      }
+      if (currentStep > 1) {
+        currentStep -= 1;
+        currentQuestionIndex -= 1;
+        showQuestion(currentQuestionIndex);
+      }
+    });
+
+    nextButton.addEventListener("click", () => {
+      const q = questions[currentQuestionIndex];
+      if (!answers[q.id]) {
+        // Sicherheitscheck
+        return;
+      }
+
+      if (currentQuestionIndex < totalQuestions - 1) {
+        currentQuestionIndex += 1;
+        currentStep += 1;
+        showQuestion(currentQuestionIndex);
+      } else {
+        // letzte Frage beantwortet
+        showThanks();
+      }
+    });
+
+    downloadButton.addEventListener("click", () => {
+      const payload = {
+        sessionId: sessionIdInput.value || null,
+        age: ageInput.value || null,
+        gender: genderSelect.value || null,
+        country: countryInput.value || null,
+        nativeLanguage: nativeLanguageInput.value || null,
+        timestamp: new Date().toISOString(),
+        answers: answers
+      };
+
+      const jsonString = JSON.stringify(payload, null, 2);
+      const blob = new Blob([jsonString], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const suggestedId = sessionIdInput.value && sessionIdInput.value.trim()
+        ? sessionIdInput.value.trim()
+        : "anon";
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "studie_d1_antworten_" + suggestedId + ".json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    // Startzustand
+    showIntro();
   </script>
 </body>
 </html>
