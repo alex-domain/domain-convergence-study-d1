@@ -387,13 +387,13 @@
     <div class="top-row">
       <div>
         <h1>Study D1 - Domain Convergence</h1>
-        <p class="subtitle">Online questionnaire to capture experiences in the verbal domain and patterns of being above average through convergence.</p>
+        <p class="subtitle">Online questionnaire to capture experiences in the verbal domain.</p>
       </div>
       <div class="progress-wrap">
         <div class="progress-outer">
           <div id="progressBar" class="progress-inner"></div>
         </div>
-        <div id="stepIndicator" class="step-indicator">0/20</div>
+        <div id="stepIndicator" class="step-indicator">0/10</div>
       </div>
     </div>
 
@@ -411,7 +411,7 @@
         <h2 class="card-title">What this study is about</h2>
         <p class="card-text">
           This study is about how experiences in specific areas of life condense into one shared inner zone.
-          Here we focus specifically on the verbal domain (thinking, speaking, writing, formulating) and on how different abilities can converge into a pattern of being above average.
+          Here we focus specifically on the verbal domain (thinking, speaking, writing, formulating).
           <br /><br />
           You will see a series of statements and indicate on a scale how strongly each one applies to you.
           <br />
@@ -432,9 +432,9 @@
             <label for="gender">Gender</label>
             <select id="gender">
               <option value="">No answer</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other / diverse</option>
+              <option value="maennlich">Male</option>
+              <option value="weiblich">Female</option>
+              <option value="divers">Other / diverse</option>
             </select>
           </div>
           <div class="field">
@@ -494,13 +494,12 @@
         <div class="section-title">Finish</div>
         <h2 class="thanks-title">Thank you for your participation</h2>
         <p class="thanks-text">
-          Your answers have been prepared locally. You can now download them as a file and provide them to me later
-          for analysis.
+          Your answers have been submitted. You can close this page now.
         </p>
 
         <div class="button-row">
           <button id="downloadButton" class="btn btn-primary">
-            Save answers as file
+            Submit answers
           </button>
         </div>
       </div>
@@ -508,124 +507,66 @@
   </div>
 
   <script>
-    // Question list
-    // scale: "D1" = verbal domain convergence
-    //        "D2" = above average through convergence
+    // Question list - 10 items, verbal domain only
     const questions = [
-      // D1 verbal domain convergence
       {
-        id: "D1_1",
-        scale: "D1",
-        text: "Events from different areas of my life often condense in my mind into a single inner language zone."
+        id: 1,
+        domain: "verbale",
+        text: "Events from different areas of my life often condense in my mind into a single inner \"language zone\"."
       },
       {
-        id: "D1_2",
-        scale: "D1",
+        id: 2,
+        domain: "verbale",
         text: "My most embarrassing memories often have to do with missing the right words or being verbally blocked."
       },
       {
-        id: "D1_3",
-        scale: "D1",
+        id: 3,
+        domain: "verbale",
         text: "Mistakes in conversations, texts or discussions keep going through my head for days or even weeks afterwards."
       },
       {
-        id: "D1_4",
-        scale: "D1",
+        id: 4,
+        domain: "verbale",
         text: "When I write, talk or debate intensely, I often forget time and my surroundings because I get so absorbed in it."
       },
       {
-        id: "D1_5",
-        scale: "D1",
+        id: 5,
+        domain: "verbale",
         text: "It bothers me a lot when I do not have full verbal control in important situations or when sentences slip away from me."
       },
       {
-        id: "D1_6",
-        scale: "D1",
+        id: 6,
+        domain: "verbale",
         text: "At least one key moment in my life was a talk, text or conversation that changed a lot for me."
       },
       {
-        id: "D1_7",
-        scale: "D1",
+        id: 7,
+        domain: "verbale",
         text: "When I am exhausted, I often notice it first because I lack words, formulations or mental structure."
       },
       {
-        id: "D1_8",
-        scale: "D1",
+        id: 8,
+        domain: "verbale",
         text: "When I think about a topic, formulations and sentences automatically start to arrange themselves in my head."
       },
       {
-        id: "D1_9",
-        scale: "D1",
+        id: 9,
+        domain: "verbale",
         text: "I often feel as if there is an inner commentary running in my head that verbally accompanies many situations."
       },
       {
-        id: "D1_10",
-        scale: "D1",
+        id: 10,
+        domain: "verbale",
         text: "If I go for a long time without writing or seriously talking or debating, it feels as if something important is missing."
-      },
-
-      // D2 above average through convergence
-      {
-        id: "D2_1",
-        scale: "D2",
-        text: "In at least one area of my life, several abilities come together so that I clearly feel above average there."
-      },
-      {
-        id: "D2_2",
-        scale: "D2",
-        text: "I often notice that skills from different areas suddenly fit together in one field and make me much stronger there."
-      },
-      {
-        id: "D2_3",
-        scale: "D2",
-        text: "Other people sometimes describe me as unusually good in a very specific combination of tasks or roles."
-      },
-      {
-        id: "D2_4",
-        scale: "D2",
-        text: "I am willing to give up or reduce other interests so that one central field can become as strong as possible."
-      },
-      {
-        id: "D2_5",
-        scale: "D2",
-        text: "When I look at my strengths, they often point in the same direction instead of being spread out everywhere."
-      },
-      {
-        id: "D2_6",
-        scale: "D2",
-        text: "If I invest time or effort, it is usually in things that reinforce one main line of development."
-      },
-      {
-        id: "D2_7",
-        scale: "D2",
-        text: "In at least one domain, I experience something like a compounding effect where progress becomes faster over time."
-      },
-      {
-        id: "D2_8",
-        scale: "D2",
-        text: "I often feel tension or discomfort when I spend a lot of energy on things that do not fit my main strengths."
-      },
-      {
-        id: "D2_9",
-        scale: "D2",
-        text: "People around me could probably name one or two areas where I clearly stand out in comparison to others."
-      },
-      {
-        id: "D2_10",
-        scale: "D2",
-        text: "I have a clear inner sense that my long term advantage lies in the convergence of several abilities, not in being average at many things."
       }
     ];
 
     const totalQuestions = questions.length;
 
     // State
-    let currentStep = 0; // 0 = intro, 1..20 = questions
-    let currentQuestionIndex = 0; // 0..19
-
-    // answer stores for the two scales
-    const answersD1 = {};
-    const answersD2 = {};
+    let currentStep = 0; // 0 = intro, 1..10 = questions
+    let currentQuestionIndex = 0; // 0..9
+    const answers = {};
 
     // DOM references
     const progressBar = document.getElementById("progressBar");
@@ -665,20 +606,6 @@
       updateProgress();
     }
 
-    function labelForQuestion(q) {
-      if (q.scale === "D1") {
-        return "Domain: verbal domain";
-      }
-      if (q.scale === "D2") {
-        return "Pattern: above average through convergence";
-      }
-      return "";
-    }
-
-    function getAnswerStore(q) {
-      return q.scale === "D1" ? answersD1 : answersD2;
-    }
-
     function showQuestion(index) {
       const q = questions[index];
 
@@ -686,7 +613,7 @@
       questionSection.style.display = "block";
       thanksSection.style.display = "none";
 
-      domainLabel.textContent = labelForQuestion(q);
+      domainLabel.textContent = "Domain: verbal domain";
       questionText.textContent = q.text;
 
       const btns = likertButtonsContainer.querySelectorAll(".likert-btn");
@@ -694,9 +621,7 @@
         btn.classList.remove("selected");
       });
 
-      const store = getAnswerStore(q);
-      const prevAnswer = store[q.id];
-
+      const prevAnswer = answers[q.id];
       if (prevAnswer) {
         const btn = likertButtonsContainer.querySelector(
           '.likert-btn[data-value="' + prevAnswer + '"]'
@@ -734,9 +659,8 @@
 
       const value = parseInt(target.getAttribute("data-value"), 10);
       const q = questions[currentQuestionIndex];
-      const store = getAnswerStore(q);
 
-      store[q.id] = value;
+      answers[q.id] = value;
 
       const btns = likertButtonsContainer.querySelectorAll(".likert-btn");
       btns.forEach((btn) => btn.classList.remove("selected"));
@@ -759,9 +683,7 @@
 
     nextButton.addEventListener("click", () => {
       const q = questions[currentQuestionIndex];
-      const store = getAnswerStore(q);
-
-      if (!store[q.id]) {
+      if (!answers[q.id]) {
         return;
       }
 
@@ -774,7 +696,26 @@
       }
     });
 
-    downloadButton.addEventListener("click", () => {
+    // Send payload to Google Apps Script
+    async function sendResultsToSheet(payload) {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbwxt2YRK54cHxbjbQN6-kzesyM1HMFuCbz9BEwTfrT7gUe5tiCsOXMLWVLZwLWO2qjy/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed with status " + response.status);
+      }
+    }
+
+    // Final submit button
+    downloadButton.addEventListener("click", async () => {
       const payload = {
         sessionId: sessionIdInput.value || null,
         age: ageInput.value || null,
@@ -782,27 +723,19 @@
         country: countryInput.value || null,
         nativeLanguage: nativeLanguageInput.value || null,
         timestamp: new Date().toISOString(),
-        answers_d1: answersD1,
-        answers_d2: answersD2
+        answers: answers
       };
 
-      const jsonString = JSON.stringify(payload, null, 2);
-      const blob = new Blob([jsonString], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-
-      const suggestedId = sessionIdInput.value && sessionIdInput.value.trim()
-        ? sessionIdInput.value.trim()
-        : "anon";
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "study_d1_answers_" + suggestedId + ".json";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      try {
+        await sendResultsToSheet(payload);
+        alert("Your answers were submitted. Thank you!");
+      } catch (err) {
+        console.error(err);
+        alert("There was a problem submitting your answers. Please contact the study author.");
+      }
     });
 
+    // Initial state
     showIntro();
   </script>
 </body>
