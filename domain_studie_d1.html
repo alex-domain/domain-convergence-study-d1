@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Studie D1 - Domainkonvergenz</title>
+  <title>Study D1 - Domain Convergence</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
@@ -266,7 +266,7 @@
       box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
     }
 
-    /* Fragebereich */
+    /* Question area */
 
     .question-header {
       display: flex;
@@ -347,7 +347,7 @@
       color: var(--text-muted);
     }
 
-    /* Danke Seite */
+    /* Thanks page */
 
     .thanks-title {
       font-size: 20px;
@@ -390,8 +390,8 @@
   <div class="shell">
     <div class="top-row">
       <div>
-        <h1>Studie D1 - Domainkonvergenz</h1>
-        <p class="subtitle">Online Fragebogen zur Erfassung von Erlebnissen in der verbalen Domain.</p>
+        <h1>Study D1 - Domain Convergence</h1>
+        <p class="subtitle">Online questionnaire to capture experiences in the verbal domain.</p>
       </div>
       <div class="progress-wrap">
         <div class="progress-outer">
@@ -402,77 +402,75 @@
     </div>
 
     <p class="study-url">
-      Aktueller Link zur Studie:
+      Current link to the study:
       <span class="study-url-tag">
-        wird eingetragen, sobald die Seite online ist
+        will be inserted once the page is online
       </span>
     </p>
 
-    <!-- Intro Sektion -->
+    <!-- Intro section -->
     <section id="introSection" class="card">
       <div class="card-inner">
-        <div class="section-title">Einleitung</div>
-        <h2 class="card-title">Worum es in dieser Studie geht</h2>
+        <div class="section-title">Introduction</div>
+        <h2 class="card-title">What this study is about</h2>
         <p class="card-text">
-          In dieser Studie geht es darum, wie sich Erlebnisse in bestimmten Lebensbereichen auf eine gemeinsame
-          innere Zone verdichten. Hier geht es konkret um die verbale Domain (Denken, Sprechen, Schreiben,
-          Formulieren).
+          This study is about how experiences in specific areas of life condense into one shared inner zone.
+          Here we focus specifically on the verbal domain (thinking, speaking, writing, formulating).
           <br /><br />
-          Du bekommst gleich eine Reihe von Aussagen zu sehen und gibst mit einer Skala an, wie stark sie auf dich
-          zutreffen.
+          You will see a series of statements and indicate on a scale how strongly each one applies to you.
           <br />
-          Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, dass du ehrlich antwortest.
+          There are no right or wrong answers. The only important thing is that you answer honestly.
         </p>
 
-        <div class="section-title" style="margin-top: 24px;">Ein paar Angaben zu dir (freiwillig)</div>
+        <div class="section-title" style="margin-top: 24px;">Some information about you (optional)</div>
         <div class="grid">
           <div class="field">
-            <label for="sessionId">Session Code (optional)</label>
-            <input id="sessionId" type="text" placeholder="z.B. D1_001" />
+            <label for="sessionId">Session code (optional)</label>
+            <input id="sessionId" type="text" placeholder="e.g. D1_001" />
           </div>
           <div class="field">
-            <label for="age">Alter</label>
-            <input id="age" type="text" placeholder="z.B. 20" />
+            <label for="age">Age</label>
+            <input id="age" type="text" placeholder="e.g. 20" />
           </div>
           <div class="field">
-            <label for="gender">Geschlecht</label>
+            <label for="gender">Gender</label>
             <select id="gender">
-              <option value="">Keine Angabe</option>
-              <option value="maennlich">Männlich</option>
-              <option value="weiblich">Weiblich</option>
-              <option value="divers">Divers</option>
+              <option value="">No answer</option>
+              <option value="maennlich">Male</option>
+              <option value="weiblich">Female</option>
+              <option value="divers">Other / diverse</option>
             </select>
           </div>
           <div class="field">
-            <label for="country">Land</label>
-            <input id="country" type="text" placeholder="z.B. Land" />
+            <label for="country">Country</label>
+            <input id="country" type="text" placeholder="e.g. country" />
           </div>
           <div class="field">
-            <label for="nativeLanguage">Muttersprache</label>
-            <input id="nativeLanguage" type="text" placeholder="z.B. Sprache" />
+            <label for="nativeLanguage">Native language</label>
+            <input id="nativeLanguage" type="text" placeholder="e.g. language" />
           </div>
         </div>
 
         <div class="button-row">
           <button id="startButton" class="btn btn-primary">
-            Fragebogen starten
+            Start questionnaire
           </button>
         </div>
       </div>
     </section>
 
-    <!-- Frage Sektion -->
+    <!-- Question section -->
     <section id="questionSection" class="card" style="display: none;">
       <div class="card-inner">
         <div class="question-header">
-          <div class="domain-label" id="domainLabel">Domain: Verbale Domain</div>
+          <div class="domain-label" id="domainLabel">Domain: verbal domain</div>
         </div>
         <div id="questionText" class="question-text">
-          Frage Text
+          Question text
         </div>
 
         <div class="likert-row">
-          <div class="likert-label">Trifft gar nicht zu</div>
+          <div class="likert-label">Does not apply at all</div>
           <div class="likert-buttons" id="likertButtons">
             <button class="likert-btn" data-value="1">1</button>
             <button class="likert-btn" data-value="2">2</button>
@@ -480,33 +478,33 @@
             <button class="likert-btn" data-value="4">4</button>
             <button class="likert-btn" data-value="5">5</button>
           </div>
-          <div class="likert-label">Trifft sehr stark zu</div>
+          <div class="likert-label">Applies very strongly</div>
         </div>
 
         <div class="button-row">
-          <button id="backButton" class="btn btn-secondary">Zurück</button>
-          <button id="nextButton" class="btn btn-primary" disabled>Weiter</button>
+          <button id="backButton" class="btn btn-secondary">Back</button>
+          <button id="nextButton" class="btn btn-primary" disabled>Next</button>
         </div>
 
         <p class="footer-note">
-          Bitte beantworte jede Aussage spontan. Es gibt keine richtigen oder falschen Antworten.
+          Please answer each statement spontaneously. There are no right or wrong answers.
         </p>
       </div>
     </section>
 
-    <!-- Danke Sektion -->
+    <!-- Thanks section -->
     <section id="thanksSection" class="card" style="display: none;">
       <div class="card-inner">
-        <div class="section-title">Abschluss</div>
-        <h2 class="thanks-title">Danke für deine Teilnahme</h2>
+        <div class="section-title">Finish</div>
+        <h2 class="thanks-title">Thank you for your participation</h2>
         <p class="thanks-text">
-          Deine Antworten wurden lokal vorbereitet. Du kannst sie nun als Datei herunterladen und mir später
-          zur Auswertung zur Verfügung stellen.
+          Your answers have been prepared locally. You can now download them as a file and provide them to me later
+          for analysis.
         </p>
 
         <div class="button-row">
           <button id="downloadButton" class="btn btn-primary">
-            Antworten als Datei speichern
+            Save answers as file
           </button>
         </div>
       </div>
@@ -514,68 +512,68 @@
   </div>
 
   <script>
-    // Fragenliste - 10 Items, nur verbale Domain
+    // Question list - 10 items, verbal domain only
     const questions = [
       {
         id: 1,
         domain: "verbale",
-        text: "Ereignisse aus unterschiedlichen Lebensbereichen verdichten sich in meinem Kopf oft zu einer einzigen inneren Sprach-Zone."
+        text: "Events from different areas of my life often condense in my mind into a single inner \"language zone\"."
       },
       {
         id: 2,
         domain: "verbale",
-        text: "Meine peinlichsten Erinnerungen haben oft damit zu tun, dass mir die richtigen Worte gefehlt haben oder ich sprachlich blockiert war."
+        text: "My most embarrassing memories often have to do with missing the right words or being verbally blocked."
       },
       {
         id: 3,
         domain: "verbale",
-        text: "Fehler in Gesprächen, Texten oder Diskussionen gehen mir noch Tage oder Wochen später im Kopf herum."
+        text: "Mistakes in conversations, texts or discussions keep going through my head for days or even weeks afterwards."
       },
       {
         id: 4,
         domain: "verbale",
-        text: "Wenn ich intensiv schreibe, rede oder diskutiere, vergesse ich häufig Zeit und Umgebung, weil ich so darin aufgehe."
+        text: "When I write, talk or debate intensely, I often forget time and my surroundings because I get so absorbed in it."
       },
       {
         id: 5,
         domain: "verbale",
-        text: "Es belastet mich deutlich, wenn ich in wichtigen Situationen sprachlich nicht die volle Kontrolle habe oder mir Sätze entgleiten."
+        text: "It bothers me a lot when I do not have full verbal control in important situations or when sentences slip away from me."
       },
       {
         id: 6,
         domain: "verbale",
-        text: "Mindestens ein Schlüsselmoment in meinem Leben war ein Vortrag, Text oder Gespräch, das für mich sehr viel verändert hat."
+        text: "At least one key moment in my life was a talk, text or conversation that changed a lot for me."
       },
       {
         id: 7,
         domain: "verbale",
-        text: "Wenn ich erschöpft bin, merke ich es oft zuerst daran, dass mir Worte, Formulierungen oder gedankliche Struktur fehlen."
+        text: "When I am exhausted, I often notice it first because I lack words, formulations or mental structure."
       },
       {
         id: 8,
         domain: "verbale",
-        text: "Wenn ich über ein Thema nachdenke, beginnen sich Formulierungen und Sätze automatisch in meinem Kopf zu sortieren."
+        text: "When I think about a topic, formulations and sentences automatically start to arrange themselves in my head."
       },
       {
         id: 9,
         domain: "verbale",
-        text: "Ich habe häufig das Gefühl, dass in meinem Kopf ein innerer Kommentar mitläuft, der viele Situationen sprachlich begleitet."
+        text: "I often feel as if there is an inner commentary running in my head that verbally accompanies many situations."
       },
       {
         id: 10,
         domain: "verbale",
-        text: "Wenn ich längere Zeit weder schreibe noch ernsthaft spreche oder diskutiere, fühlt es sich so an, als würde mir etwas Wichtiges fehlen."
+        text: "If I go for a long time without writing or seriously talking or debating, it feels as if something important is missing."
       }
     ];
 
     const totalQuestions = questions.length;
 
-    // Zustand
-    let currentStep = 0; // 0 = Intro, 1..10 = Fragen, 10 = letzte Frage, danach Danke aber Anzeige bleibt 10
+    // State
+    let currentStep = 0; // 0 = intro, 1..10 = questions, 10 = last question, then thanks but display stays 10
     let currentQuestionIndex = 0; // 0..9
     const answers = {};
 
-    // DOM Referenzen
+    // DOM references
     const progressBar = document.getElementById("progressBar");
     const stepIndicator = document.getElementById("stepIndicator");
 
@@ -620,10 +618,10 @@
       questionSection.style.display = "block";
       thanksSection.style.display = "none";
 
-      domainLabel.textContent = "Domain: Verbale Domain";
+      domainLabel.textContent = "Domain: verbal domain";
       questionText.textContent = q.text;
 
-      // Auswahl zurücksetzen
+      // reset selection
       const btns = likertButtonsContainer.querySelectorAll(".likert-btn");
       btns.forEach((btn) => {
         btn.classList.remove("selected");
@@ -651,12 +649,12 @@
       questionSection.style.display = "none";
       thanksSection.style.display = "block";
 
-      // Anzeige bleibt 10/10
+      // display stays 10/10
       currentStep = totalQuestions;
       updateProgress();
     }
 
-    // Event Listener
+    // Event listeners
     startButton.addEventListener("click", () => {
       currentStep = 1;
       currentQuestionIndex = 0;
@@ -681,7 +679,7 @@
 
     backButton.addEventListener("click", () => {
       if (currentStep === 1) {
-        // zurück zur Intro Seite
+        // back to intro
         showIntro();
         return;
       }
@@ -695,7 +693,7 @@
     nextButton.addEventListener("click", () => {
       const q = questions[currentQuestionIndex];
       if (!answers[q.id]) {
-        // Sicherheitscheck
+        // safety check
         return;
       }
 
@@ -704,7 +702,7 @@
         currentStep += 1;
         showQuestion(currentQuestionIndex);
       } else {
-        // letzte Frage beantwortet
+        // last question answered
         showThanks();
       }
     });
@@ -730,14 +728,14 @@
 
       const a = document.createElement("a");
       a.href = url;
-      a.download = "studie_d1_antworten_" + suggestedId + ".json";
+      a.download = "study_d1_answers_" + suggestedId + ".json";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
     });
 
-    // Startzustand
+    // Initial state
     showIntro();
   </script>
 </body>
