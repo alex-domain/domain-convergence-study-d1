@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Studie D1 - Domainkonvergenz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-card: #0b1020;
+      --bg-card-soft: #101628;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.2);
+      --accent-strong: #60a5fa;
+      --text-main: #f9fafb;
+      --text-sub: #9ca3af;
+      --border-soft: #1f2933;
+      --danger: #f97373;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 32px 16px;
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      margin-bottom: 10px;
+    }
+
+    .progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar-bg {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.25);
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #34d399, #3b82f6);
+      transition: width 0.25s ease-out;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: var(--text-sub);
+      min-width: 40px;
+      text-align: right;
+    }
+
+    .study-url {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+
+    .study-url-tag {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      margin-left: 4px;
+      font-size: 11px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #111827 0, #020617 65%);
+      border-radius: 18px;
+      padding: 26px 30px 30px;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      box-shadow: 0 22px 40px rgba(15, 23, 42, 0.7);
+      max-width: 1150px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .section-text {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .section-hint {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-top: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+
+    .intro-form {
+      margin-top: 6px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 18px;
+      margin-bottom: 10px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-label {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 4px;
+    }
+
+    .form-input,
+    .form-select {
+      border-radius: 9px;
+      border: 1px solid var(--border-soft);
+      padding: 8px 10px;
+      font-size: 13px;
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .form-input::placeholder,
+    .form-select::placeholder {
+      color: #6b7280;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--accent-strong);
+      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.7);
+      background: #020617;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .actions.spaced {
+      justify-content: space-between;
+    }
+
+    .primary-btn,
+    .ghost-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease,
+        background 0.15s ease, color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .primary-btn {
+      background: radial-gradient(circle at top left, #60a5fa 0, #2563eb 55%);
+      color: #f9fafb;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.85);
+    }
+
+    .primary-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.7);
+    }
+
+    .ghost-btn {
+      background: transparent;
+      color: var(--text-sub);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .ghost-btn:hover:not(:disabled) {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+    }
+
+    .ghost-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .domain-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-strong);
+      margin-bottom: 6px;
+    }
+
+    .question-text {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-top: 4px;
+      margin-bottom: 16px;
+    }
+
+    .scale-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .scale-label {
+      font-size: 12px;
+      color: var(--text-sub);
+      white-space: nowrap;
+    }
+
+    .scale-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .scale-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, border-color 0.15s ease,
+        box-shadow 0.15s ease, transform 0.1s ease;
+    }
+
+    .scale-btn:hover {
+      border-color: var(--accent-strong);
+    }
+
+    .scale-btn.selected {
+      background: radial-gradient(circle at top left, #34d399 0, #3b82f6 60%);
+      border-color: transparent;
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5),
+        0 8px 20px rgba(37, 99, 235, 0.7);
+      transform: translateY(-1px);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        padding: 16px;
+      }
+
+      .card {
+        padding: 20px 18px 22px;
+      }
+
+      .form-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .scale-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .scale-label {
+        text-align: center;
+      }
+
+      .actions.spaced {
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <header class="header">
+      <h1 class="header-title">Studie D1 - Domainkonvergenz</h1>
+      <p class="header-subtitle">
+        Online Fragebogen zur Erfassung von Erlebnissen in der verbalen Domain.
+      </p>
+      <div class="progress-wrapper">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <div class="progress-text">
+          <span id="progressLabel">0/10</span>
+        </div>
+      </div>
+      <p class="study-url">
+        Aktueller Link zur Studie:
+        <span class="study-url-tag">
+          wird eingetragen, sobald die Seite online ist
+        </span>
+      </p>
+    </header>
+
+    <main>
+      <!-- Einleitung und demografische Angaben -->
+      <section class="card" id="introCard">
+        <h2 class="section-title">Einleitung</h2>
+        <p class="section-text">
+          In dieser Studie geht es darum, wie sich Erlebnisse in bestimmten Lebensbereichen
+          auf eine gemeinsame innere Zone verdichten. Hier geht es konkret um die verbale
+          Domain (Denken, Sprechen, Schreiben, Formulieren).
+        </p>
+        <p class="section-text">
+          Du bekommst gleich eine Reihe von Aussagen zu sehen und gibst mit einer Skala an,
+          wie stark sie auf dich zutreffen.
+        </p>
+        <p class="section-hint">
+          Es gibt keine richtigen oder falschen Antworten. Wichtig ist nur, dass du ehrlich
+          antwortest.
+        </p>
+
+        <form id="introForm" class="intro-form" autocomplete="off">
+          <h3 class="section-subtitle">Ein paar Angaben zu dir (freiwillig)</h3>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="sessionCode">Session Code (optional)</label>
+              <input
+                id="sessionCode"
+                class="form-input"
+                type="text"
+                placeholder="z.B. D1_001"
+              />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="age">Alter</label>
+              <input
+                id="age"
+                class="form-input"
+                type="text"
+                inputmode="numeric"
+                placeholder="z.B. 20"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="gender">Geschlecht</label>
+              <select id="gender" class="form-select">
+                <option value="">Keine Angabe</option>
+                <option value="maennlich">Männlich</option>
+                <option value="weiblich">Weiblich</option>
+                <option value="divers">Divers</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="country">Land</label>
+              <input
+                id="country"
+                class="form-input"
+                type="text"
+                placeholder="z.B. Land"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="nativeLanguage">Muttersprache</label>
+              <input
+                id="nativeLanguage"
+                class="form-input"
+                type="text"
+                placeholder="z.B. Sprache"
+              />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" id="startBtn" class="primary-btn">
+              Fragebogen starten
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Fragenkarte -->
+      <section class="card hidden" id="questionCard">
+        <p class="domain-label">Domain: Verbale Domain</p>
+        <h2 class="question-text" id="questionText"></h2>
+
+        <div class="scale-row">
+          <span class="scale-label">Trifft gar nicht zu</span>
+          <div class="scale-options" id="scaleOptions"></div>
+          <span class="scale-label">Trifft sehr stark zu</span>
+        </div>
+
+        <div class="actions spaced">
+          <button type="button" id="backBtn" class="ghost-btn">Zurück</button>
+          <button type="button" id="nextBtn" class="primary-btn">Weiter</button>
+        </div>
+      </section>
+
+      <!-- Danke / Download -->
+      <section class="card hidden" id="thankYouCard">
+        <h2 class="section-title">Danke für deine Teilnahme</h2>
+        <p class="section-text">
+          Deine Antworten wurden lokal vorbereitet. Du kannst sie jetzt als Datei speichern
+          und uns später zur Auswertung zur Verfügung stellen.
+        </p>
+        <p class="section-hint">
+          Hinweis: Beim Speichern werden keine Online Daten übertragen. Die Datei liegt nur
+          bei dir und kann z.B. per Mail verschickt werden.
+        </p>
+        <div class="actions">
+          <button type="button" id="downloadBtn" class="primary-btn">
+            Antworten als Datei speichern
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      // 10 Items, nur verbale Domain
+      const ITEMS = [
+        {
+          id: "V01",
+          domain: "verbale",
+          polarity: "negativ",
+          text:
+            "Wenn ich erschöpft bin, merke ich es als erstes daran, dass mir Worte, Formulierungen oder gedankliche Struktur fehlen."
+        },
+        {
+          id: "V02",
+          domain: "verbale",
+          polarity: "negativ",
+          text:
+            "Es belastet mich deutlich, wenn ich in wichtigen Situationen sprachlich nicht die volle Kontrolle habe oder mir Sätze entgleiten."
+        },
+        {
+          id: "V03",
+          domain: "verbale",
+          polarity: "ambivalent",
+          text:
+            "Fehler in Gesprächen, Texten oder Diskussionen gehen mir noch Tage oder Wochen später im Kopf herum."
+        },
+        {
+          id: "V04",
+          domain: "verbale",
+          polarity: "positiv",
+          text:
+            "Wenn ich intensiv schreibe, rede oder diskutiere, vergesse ich oft Zeit und Umgebung, weil ich so darin aufgehe."
+        },
+        {
+          id: "V05",
+          domain: "verbale",
+          polarity: "ambivalent",
+          text:
+            "Ereignisse aus ganz unterschiedlichen Lebensbereichen verdichten sich in meinem Kopf oft zu einer einzigen inneren Sprach-Zone."
+        },
+        {
+          id: "V06",
+          domain: "verbale",
+          polarity: "negativ",
+          text:
+            "Meine peinlichsten Erinnerungen hängen oft damit zusammen, dass mir die richtigen Worte gefehlt haben oder ich sprachlich blockiert war."
+        },
+        {
+          id: "V07",
+          domain: "verbale",
+          polarity: "positiv",
+          text:
+            "Mindestens ein Schlüsselmoment in meinem Leben war ein Vortrag, Text oder Gespräch, der bzw. das für mich sehr viel verändert hat."
+        },
+        {
+          id: "V08",
+          domain: "verbale",
+          polarity: "positiv",
+          text:
+            "Wenn ich schreibe oder spreche und die Formulierungen genau treffen, fühlt sich das an, als würde innen etwas einrasten."
+        },
+        {
+          id: "V09",
+          domain: "verbale",
+          polarity: "ambivalent",
+          text:
+            "Soziale Szenen, in denen ich mich fehl am Platz oder minderwertig gefühlt habe, gehen mir oft vor allem sprachlich noch lange durch den Kopf."
+        },
+        {
+          id: "V10",
+          domain: "verbale",
+          polarity: "negativ",
+          text:
+            "Soziale Spannungen oder Statusverluste merke ich zuerst daran, dass ich innerlich an meinen Formulierungen zweifle."
+        }
+      ];
+
+      const TOTAL_ITEMS = ITEMS.length;
+
+      const introCard = document.getElementById("introCard");
+      const questionCard = document.getElementById("questionCard");
+      const thankYouCard = document.getElementById("thankYouCard");
+
+      const progressBar = document.getElementById("progressBar");
+      const progressLabel = document.getElementById("progressLabel");
+
+      const sessionCodeInput = document.getElementById("sessionCode");
+      const ageInput = document.getElementById("age");
+      const genderSelect = document.getElementById("gender");
+      const countryInput = document.getElementById("country");
+      const nativeLanguageInput = document.getElementById("nativeLanguage");
+
+      const startBtn = document.getElementById("startBtn");
+      const backBtn = document.getElementById("backBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const downloadBtn = document.getElementById("downloadBtn");
+
+      const questionTextEl = document.getElementById("questionText");
+      const scaleOptionsEl = document.getElementById("scaleOptions");
+
+      let currentIndex = 0;
+      const answers = new Array(TOTAL_ITEMS).fill(null);
+
+      function updateProgress() {
+        const completed = answers.filter((v) => v !== null).length;
+        const current = Math.max(completed, currentIndex);
+        const fraction = current / TOTAL_ITEMS;
+        progressBar.style.width = (fraction * 100).toFixed(1) + "%";
+        progressLabel.textContent = current + "/" + TOTAL_ITEMS;
+      }
+
+      function renderScale(selectedValue) {
+        scaleOptionsEl.innerHTML = "";
+        for (let value = 1; value <= 5; value++) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className =
+            "scale-btn" + (selectedValue === value ? " selected" : "");
+          btn.textContent = String(value);
+          btn.dataset.value = String(value);
+          btn.addEventListener("click", () => {
+            answers[currentIndex] = value;
+            renderScale(value);
+            updateProgress();
+          });
+          scaleOptionsEl.appendChild(btn);
+        }
+      }
+
+      function showQuestion(index) {
+        currentIndex = index;
+        const item = ITEMS[index];
+        questionTextEl.textContent = item.text;
+        const selected = answers[index];
+        renderScale(selected);
+        backBtn.disabled = index === 0;
+        nextBtn.textContent = index === TOTAL_ITEMS - 1 ? "Abschließen" : "Weiter";
+        updateProgress();
+      }
+
+      function goToQuestionnaire() {
+        introCard.classList.add("hidden");
+        thankYouCard.classList.add("hidden");
+        questionCard.classList.remove("hidden");
+        showQuestion(0);
+      }
+
+      function showThankYou() {
+        questionCard.classList.add("hidden");
+        thankYouCard.classList.remove("hidden");
+        progressBar.style.width = "100%";
+        progressLabel.textContent = TOTAL_ITEMS + "/" + TOTAL_ITEMS;
+      }
+
+      startBtn.addEventListener("click", () => {
+        goToQuestionnaire();
+      });
+
+      backBtn.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          showQuestion(currentIndex - 1);
+        }
+      });
+
+      nextBtn.addEventListener("click", () => {
+        if (answers[currentIndex] == null) {
+          alert(
+            "Bitte wähle eine Antwort auf der Skala aus, bevor du weitergehst."
+          );
+          return;
+        }
+        if (currentIndex < TOTAL_ITEMS - 1) {
+          showQuestion(currentIndex + 1);
+        } else {
+          showThankYou();
+        }
+      });
+
+      downloadBtn.addEventListener("click", () => {
+        const timestamp = new Date().toISOString();
+        const randomId = Math.random().toString(36).slice(2, 8).toUpperCase();
+        const fallbackSessionId = "D1-" + randomId;
+        const sessionId = (sessionCodeInput.value || fallbackSessionId).trim();
+
+        const participant = {
+          studyId: "D1",
+          studyName: "Domainkonvergenz",
+          version: "verbale_domain_v1",
+          sessionId: sessionId,
+          timestamp: timestamp,
+          demographics: {
+            age: ageInput.value.trim(),
+            gender: genderSelect.value || "",
+            country: countryInput.value.trim(),
+            nativeLanguage: nativeLanguageInput.value.trim()
+          },
+          responses: ITEMS.map((item, index) => ({
+            itemId: item.id,
+            itemIndex: index + 1,
+            domain: item.domain,
+            polarity: item.polarity,
+            questionText: item.text,
+            answer: answers[index]
+          }))
+        };
+
+        const blob = new Blob([JSON.stringify(participant, null, 2)], {
+          type: "application/json"
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        const safeSession = sessionId.replace(/[^A-Za-z0-9_-]/g, "_");
+        a.download = "studie_d1_responses_" + safeSession + ".json";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
