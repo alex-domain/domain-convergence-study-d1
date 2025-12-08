@@ -393,7 +393,7 @@
         <div class="progress-outer">
           <div id="progressBar" class="progress-inner"></div>
         </div>
-        <div id="stepIndicator" class="step-indicator">0/24</div>
+        <div id="stepIndicator" class="step-indicator">0/25</div>
       </div>
     </div>
 
@@ -508,7 +508,7 @@
   </div>
 
   <script>
-    // 24 items, three blocks in one run
+    // 25 items, three blocks plus one additional item in one run
     const questions = [
       // Block 1 - Domain convergence - verbal
       {
@@ -634,14 +634,21 @@
         id: 24,
         blockLabel: "Block 3 - development of verbal talent",
         text: "Looking back, my verbal strength feels more like the result of many experiences converging over time than only of being born with talent."
+      },
+
+      // Additional item - strong acceleration phase
+      {
+        id: 25,
+        blockLabel: "Block 3 - development of verbal talent",
+        text: "At some point in my life my verbal abilities suddenly accelerated unusually strongly, either from clearly below or average to strong, or from already strong to a clearly higher level."
       }
     ];
 
     const totalQuestions = questions.length;
 
     // State
-    let currentStep = 0; // 0 = intro, 1..24 = questions
-    let currentQuestionIndex = 0; // 0..23
+    let currentStep = 0; // 0 = intro, 1..25 = questions
+    let currentQuestionIndex = 0; // 0..24
     const answers = {};
 
     // DOM references
