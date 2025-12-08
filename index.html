@@ -393,7 +393,7 @@
         <div class="progress-outer">
           <div id="progressBar" class="progress-inner"></div>
         </div>
-        <div id="stepIndicator" class="step-indicator">0/25</div>
+        <div id="stepIndicator" class="step-indicator">0/26</div>
       </div>
     </div>
 
@@ -508,7 +508,7 @@
   </div>
 
   <script>
-    // 25 items, three blocks plus one additional item in one run
+    // 26 items, three blocks plus two additional items in one run
     const questions = [
       // Block 1 - Domain convergence - verbal
       {
@@ -641,14 +641,21 @@
         id: 25,
         blockLabel: "Block 3 - development of verbal talent",
         text: "At some point in my life my verbal abilities suddenly accelerated unusually strongly, either from clearly below or average to strong, or from already strong to a clearly higher level."
+      },
+
+      // Additional item - strong experience before increase
+      {
+        id: 26,
+        blockLabel: "Block 3 - development of verbal talent",
+        text: "Did you EVER have a strong good or bad experience involving language, speaking, writing, expressing yourself, etc. at any point before your verbal abilities increased?"
       }
     ];
 
     const totalQuestions = questions.length;
 
     // State
-    let currentStep = 0; // 0 = intro, 1..25 = questions
-    let currentQuestionIndex = 0; // 0..24
+    let currentStep = 0; // 0 = intro, 1..26 = questions
+    let currentQuestionIndex = 0; // 0..25
     const answers = {};
 
     // DOM references
