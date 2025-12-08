@@ -393,7 +393,7 @@
         <div class="progress-outer">
           <div id="progressBar" class="progress-inner"></div>
         </div>
-        <div id="stepIndicator" class="step-indicator">0/20</div>
+        <div id="stepIndicator" class="step-indicator">0/24</div>
       </div>
     </div>
 
@@ -508,7 +508,7 @@
   </div>
 
   <script>
-    // 20 items, two blocks in one run
+    // 24 items, three blocks in one run
     const questions = [
       // Block 1 - Domain convergence - verbal
       {
@@ -612,14 +612,36 @@
         id: 20,
         blockLabel: "Block 2 - above average pattern (verbal)",
         text: "I believe that, with enough effort, I could reach a professional or elite level in some verbal field (writing, speaking, teaching etc.)."
+      },
+
+      // Block 3 - Development of verbal talent
+      {
+        id: 21,
+        blockLabel: "Block 3 - development of verbal talent",
+        text: "Already as a child or teenager I was often seen as talented in language related tasks (writing, speaking, explaining)."
+      },
+      {
+        id: 22,
+        blockLabel: "Block 3 - development of verbal talent",
+        text: "My strong verbal abilities developed mainly later in life rather than already in early childhood."
+      },
+      {
+        id: 23,
+        blockLabel: "Block 3 - development of verbal talent",
+        text: "The moment when I became noticeably strong in the verbal domain felt rather sudden to me (for example within one or two years)."
+      },
+      {
+        id: 24,
+        blockLabel: "Block 3 - development of verbal talent",
+        text: "Looking back, my verbal strength feels more like the result of many experiences converging over time than only of being born with talent."
       }
     ];
 
     const totalQuestions = questions.length;
 
     // State
-    let currentStep = 0; // 0 = intro, 1..20 = questions
-    let currentQuestionIndex = 0; // 0..19
+    let currentStep = 0; // 0 = intro, 1..24 = questions
+    let currentQuestionIndex = 0; // 0..23
     const answers = {};
 
     // DOM references
@@ -750,9 +772,8 @@
       }
     });
 
-    // *** WICHTIG: neue Version ohne CORS-Probleme ***
+    // new version without CORS problems
     async function sendResultsToSheet(payload) {
-      // Keine eigenen Header, no-cors, JSON als Text
       await fetch(
         "https://script.google.com/macros/s/AKfycbwxt2YRK54cHxbjbQN6-kzesyM1HMFuCbz9BEwTfrT7gUe5tiCsOXMLWVLZwLWO2qjy/exec",
         {
